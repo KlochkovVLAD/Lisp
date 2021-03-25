@@ -52,6 +52,9 @@
 ((null x) y)
 (t (rev (cdr x) (cons (car x) y)))))
 
+
+(print (separ '(1 2 3 4 5 6 7 8 9) 3 '()))
+
 ;36Проверить пересекаются  ли списки
 (defun f (x y)
 (cond ((null x) t)
@@ -67,6 +70,3 @@
 
 
 (print (f '(1 4 6 10) '(0 2 3 5 10)))
-
-
-(print (separ '(1 2 3 4 5 6 7 8 9) 3 '()))
