@@ -90,23 +90,18 @@
 (print (Первый-Совпадающий '(1 4 6 10) '()))
 ;NIL
 
-(print "Задание 35. Подмножество")
+(print "Задание 35. Определите функцию ПОДМНОЖЕСТВО,которая проверяет,является ли одно множество подмножеством другого.")
 
 (defun Подмнож (lst1 lst2)
-    (cond ((null lst2) (check lst1 lst2))
-        ((equal (car lst1) (car lst2)) (ПроверкаВсехСледующих lst1 lst2))
-        (t (Подмнож lst1 (cdr lst2)))))
+    (cond
+        ((null lst1) t)
+        ((null lst2) (check lst1 lst2))
+        ((mem (car lst1) lst2) (Подмнож (cdr lst1) lst2))
+        (t nil)))
 
 (defun check (lst1 lst2)
     (cond
         ((equal lst1 lst2) t)))
-
-
-(defun ПроверкаВсехСледующих (lst1 lst2)
-    (cond
-        ((NULL lst1) t)
-        ((equal (mem (car lst1) lst2) nil) nil)
-        (t (ПроверкаВсехСледующих (cdr lst1) (cdr lst2)))))
 
 (defun mem (atm lst2)
     (cond ((null lst2) nil)
