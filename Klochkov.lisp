@@ -1,5 +1,5 @@
 
-(print "Задание 3. Список 1-n")
+(print "Задание 4. Список 1-n")
 (defun start (lst1 n k)
     (cond ((< k (+ n 1)) (cons k (start lst1 n (+ k 1))))))
 
