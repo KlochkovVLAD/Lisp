@@ -149,11 +149,15 @@
 (print "Задание 43. Множество вершин дерева")
 
 (defun cntr (tree cnt)
+    ((lambda (f1 f2)
     (cond
         ((NULL tree) cnt)
-        ((ATOM (car tree)) (cntr (cdr tree) (+ cnt 1)))
-        (t (cntr (cdr tree )(cntr (car tree) cnt)))))
-
+        ((ATOM f1) (cntr f2 (+ cnt 1)))
+        (t (cntr f2 (cntr f1 cnt)))
+        ))
+     (car tree)
+     (cdr tree)
+))
 (defun strt (lst)
     (cntr lst 0))
 
