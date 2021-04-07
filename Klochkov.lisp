@@ -13,7 +13,7 @@
 ;NIL
 
 (print "Задание 11. Определите функцию,осуществляющую разделение исходного списка на два подсписка.
-       Впервый из них должно попасть указанное количество элементов сначала списка,во второй оставшиес элементы.")
+       Впервый из них должно попасть указанное количество элементов сначала списка,во второй оставшиеся элементы.")
 
 (defun separ (lst n &optional (head '()))
     (cond
@@ -79,7 +79,7 @@
 (defun mem (atm lst2)
     (cond
         ((null lst2) nil)
-        ((equal atm (car lst2)) atm)
+        ((equal atm (car lst2)) t)
         (t (mem atm (cdr lst2)))))
 
 
@@ -136,25 +136,3 @@
 ;T
 (print (Пересечение '() '()))
 ;T
-
-(print "Задание 43. Множество вершин дерева")
-
-(defun cntr (tree cnt)
-    ((lambda (f1 f2)
-    (cond
-        ((NULL tree) cnt)
-        ((ATOM f1) (cntr f2 (+ cnt 1)))
-        (t (cntr f2 (cntr f1 cnt)))
-        ))
-     (car tree)
-     (cdr tree)
-))
-(defun strt (lst)
-    (cntr lst 0))
-
-(print (strt '(1 (2 (3 4) 5 (6 7))) ) )
-;7
-(print (strt '(1 (2 3 4 5 6) ) ))
-;6
-(print (strt '() ) )
-;0
