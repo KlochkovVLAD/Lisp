@@ -71,21 +71,22 @@
 
 (print "Задание 9. Напишите генератор порождения чисел Фибоначчи: 0, 1, 1, 2, 3, 5, ...")
 
-(defun ГЕНЕРАТОР (N &optional (cnt 0) (res '()))
-    ((lambda (f1)
-        (cond
-            ((< N 1) nil)
-            ((= cnt N) (rev res))
-            ((< cnt 2) (ГЕНЕРАТОР N f1 (cons cnt res)))
-            (t (ГЕНЕРАТОР N f1 (cons (+ (car res) (cadr res)) res)))
-        ))
-    (+ cnt 1))
-)
+(let ((curr 1) (prev 0))
+     
+  (defun next-fib  ()
+      (let ((tmp curr)) (setq curr (+ curr prev) prev tmp)))
+     
+  (defun reset-fib () 
+      (setq curr 1 prev 0)))
 
-(print (ГЕНЕРАТОР 10))
-(print (ГЕНЕРАТОР 1))
-(print (ГЕНЕРАТОР 2))
-(print (ГЕНЕРАТОР 0))
+(print (reset-fib))
+(print (next-fib))
+(print (next-fib))
+(print (next-fib))
+(print (next-fib))
+(print (next-fib))
+(print (next-fib))
+(print (next-fib))
 
 (print "Задание 11. Определите фукнционал МНОГОФУН, который использует функции, являющиеся
 аргументами, по следующей схеме: (МНОГОФУН ’(f g ... h) x) ⇔ (LIST (f x) (g x) ... (h x)).")
