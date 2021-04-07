@@ -25,9 +25,9 @@
 
 (defun APL-APPLY (f args &optional (res '()))
     (cond
-        ((NULL args) (rev res))
+        ((NULL args) nil)
         ((NULL f) nil)
-        (t (APL-APPLY (cdr f) (cdr args) (cons (APPLY (car f) (car args)) res ) ) )
+        (t (cons (APPLY (car f) (car args) (APL-APPLY (cdr f) (cdr args)) )))
     )
 )
 
@@ -54,12 +54,12 @@
 (print "Задание 7. Определите фильтр (УДАЛИТЬ-ЕСЛИ-НЕ пред список), удаляющий из списка СПИСОК
 все элементы, которые не обладают свойством, наличие которого проверяет предикат пред.")
 
-(defun УДАЛИТЬ-ЕСЛИ-НЕ (пред список &optional (res '()))
+(defun УДАЛИТЬ-ЕСЛИ-НЕ (пред список)
     ((lambda (f1)
         (cond
-        ((NULL список) (rev res))
-        ((APPLY пред f1) (УДАЛИТЬ-ЕСЛИ-НЕ пред (cdr список) (cons f1 res)))
-        (t (УДАЛИТЬ-ЕСЛИ-НЕ пред (cdr список) res))
+        ((NULL список) nil)
+        ((APPLY пред f1) (cons f1 (УДАЛИТЬ-ЕСЛИ-НЕ пред (cdr список))))
+        (t (УДАЛИТЬ-ЕСЛИ-НЕ пред (cdr список)))
     ))
     (car список))
 )
@@ -91,13 +91,13 @@
 аргументами, по следующей схеме: (МНОГОФУН ’(f g ... h) x) ⇔ (LIST (f x) (g x) ... (h x)).")
 
 
-(defun МНОГОФУН (f x &optional (res '()))
+
+(defun МНОГОФУН (f x)
     (cond
-        ((NULL f) (rev res))
-        (t (МНОГОФУН (cdr f) x (cons (list (APPLY (car f) x)) res)))
+        ((NULL f) nil)
+        (t (cons (list (APPLY (car f) x)) (МНОГОФУН (cdr f) x)))
         )
 )
-
 
 (print (МНОГОФУН '(+ - *) '(4 3 4)))
 (print (МНОГОФУН '(car cadr atom) '((4 3 2 1)) ))
