@@ -23,16 +23,16 @@
 (print "Задание 3. Определите функционал (APL-APPLY f x), который применяет каждую функцию fi списка (f1 f2 ... fn)
 к соответствующему элементу спискаx = (x1 x2 ... xn) и воявращает список, сформированный из результатов.")
 
-(defun APL-APPLY (f args &optional (res '()))
+(defun APL-APPLY (f args)
     (cond
         ((NULL args) nil)
         ((NULL f) nil)
-        (t (cons (APPLY (car f) (car args) (APL-APPLY (cdr f) (cdr args)) )))
+        (t (cons (APPLY (car f) (car args)) (APL-APPLY (cdr f) (cdr args)) ))
     )
 )
 
 
-(print (APL-APPLY '(+ - * /) '((1 2) (3 4) (5 6) (7 8))))
+(print (APL-APPLY '(+ - * /) '((1 2) (3 4) (5 6) (7 8)) ))
 (print (APL-APPLY '(car cdr ATOM) '( ((1 2)) ((3 4)) ((5 6)))))
 (print (APL-APPLY '() '((1 2) (3 4) (5 6) (7 8))))
  
